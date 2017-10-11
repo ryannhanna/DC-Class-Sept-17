@@ -5,15 +5,18 @@ var bad = .1
 function tipAmount(amount, levelofServ) {
     if (levelofServ === "good" ) {
         var a = .2 * amount;
-        console.log(a);
+        var b  = a + amount;
+        console.log(b);
     }
     else if (levelofServ === "fair") {
-        var b = .15 * amount;
+        var a = .15 * amount;
+        var b  = a + amount;
         console.log(b);
     }
      if (levelofServ === "bad") {
-        var c = .1 * amount;
-        console.log(c);
+        var a = .1 * amount;
+        var b  = a + amount;
+        console.log(b);
     }
 }
 
