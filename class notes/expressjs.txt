@@ -1,0 +1,83 @@
+Express is a Fast, unopinionated, minimalist web framework for Node.js
+
+
+once directory is created put your templates in a folder
+
+
+views/hello.hbs use {{title}} and {{name}}
+
+
+
+for each statements in handlebars/express
+
+
+for each
+
+friends = [
+  {name: "Joan"},
+  ...
+];
+<ul>
+  {{#each friends}}
+    <li>{{name}}</li>
+  {{/each}}
+</ul>
+
+if statments in handlebars/express
+
+if statements
+
+{{#if age }}
+  you are {{age}}
+{{/if}}
+
+HTML Escapig: it locks your HTML so no one may enter or make changes to your html work.
+
+HTML Escaping
+
+var html_content = '<strong>hello</strong>';
+
+{{html_content}} vs {{{html_content}}}
+
+How to layout in handle bars:
+
+Layout- allows you to template your own websites
+
+this file must be in the previously mentioned view folder
+
+layout.hbs
+
+<html>
+  <head>
+    <title>{{title}}</title>
+  </head>
+  <body>
+    {{{body}}}
+  </body>
+</html>
+
+-------------------------------------
+
+
+express forms:
+
+views/form.hbs
+
+<form action="/submit" method="POST">
+  <label>Name</label>
+  <input type="text" name="name">
+  <br><br>
+  <button type="submit">Submit</button>
+</form>
+
+in your app.js
+
+app.get('/form', function(req, resp) {
+  response.render('form.hbs');
+});
+
+
+
+Redirects
+
+response.redirect('/some-where-else');
