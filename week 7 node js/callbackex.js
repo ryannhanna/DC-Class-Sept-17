@@ -6,8 +6,6 @@ add(1, 2, function (result) { console.log(result); });
 
 
 
-
-
 function subtract(x, y, callback) {
 var result = x - y;
   callback(result);
