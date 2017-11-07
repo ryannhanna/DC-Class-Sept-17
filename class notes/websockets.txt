@@ -1,0 +1,113 @@
+Http requests make requests get a response then your browser starts parsing HTML.
+
+How to start the backend in with web sockets...socket i/o
+
+var http = require('http').Server(app);---importing your HTTP server
+
+
+
+var io = require('socket.io')(http); --importing socketi/o
+
+
+
+app.use('/socket-io',
+  express.static('node_modules/socket.io-client/dist'));
+app.get('/', function (request, response) {
+  response.render('chat.hbs');
+});
+
+
+
+io.on('connection', function(client){     --- all your socket informtaion goes on your io.on. Connection event when connecting to the backend.
+
+
+  console.log('CONNECTED'); ---printing the statement that you are closed.
+  client.on('disconnect', function () {
+    console.log('EXITED');
+  });
+});
+
+
+http.listen(8000, ...       --- This is the port that your http server will be listening on.
+
+
+
+-------Starting the front end----------
+
+web requests start as a regular http requests requesting to be upgrading to a  web socket.
+
+
+<script src="/socket-io/socket.io.js"></script>
+<script>
+  var server = io();
+  server.on('connect', function (s) {
+    console.log('connected');
+  });
+
+
+  client.on('incoming', function(msg){--- this is an incoming message event. When an incoming message comes in a message object appears. This is a backend function.
+
+  io.emit('chat-msg', msg);
+
+  can also use client.emit- This alternatively emits only 1 client at a time.
+});
+
+
+<input id="message" onkeypress="send_message(event)"> ---- This is the front end portion of message sending. this function makes whenever you press a key it will send a send function method.
+<pre id="chat-box"></pre
+
+
+server.on('chat-msg', function (msg) {------------  This is the continuation of the front end messaging.
+
+
+
+  var chat = document.getElementById("chat-box");
+  chat.insertAdjacentHTML('beforeend', '\n' + msg);
+});
+function send_message (event) {
+  var char = event.which || event.keyCode;
+  if (char == '13') {
+    var msg = document.getElementById("message");
+    server.emit('incoming', msg.value);
+    msg.value = '';
+
+
+
+This is how to form rooms/groups on the backend side =
+
+
+    client.on('join-room', function(room){
+  client.join(room, function() {
+    console.log(client.rooms);
+    io.to(room).emit('chat-msg', '**new user joined**'); --- This is how to set up a join room function within the groups.
+  });
+
+
+
+  client.on('incoming', function(msg){--- this makes a function so it sends the messages only to the certain group of people.
+
+
+    io.to(msg.room).emit('chat-msg', msg.msg);
+  });
+});
+  }
+}
+
+
+// on connect--------------------  This is the rooms/group on the frontend side of things.
+
+
+
+var url = new URL(location.href);
+room = url.searchParams.get('room') || 'main-room';
+server.emit('join-room', room);
+// sending message
+server.emit('incoming', {room: room, msg: msg.value}); - This will make it so that when users send messages it will send a message value to the users in the room.
+
+
+io.to(client.id)
+  .emit('chat-msg', '**thanks for joining**');
+// or
+client.emit('chat-msg', '**thanks for joining**');---- This sends a particular message to a particular client -- i. e primate message functionality .
+
+</script>
