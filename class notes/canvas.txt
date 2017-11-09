@@ -1,0 +1,2 @@
+Canvas Elements-----
+Canvas allows us the ability to draw pixel by pixel gives us free form structure to draw lines and shapes. 

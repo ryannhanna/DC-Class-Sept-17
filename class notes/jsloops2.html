@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div id ="output"></div>
+
+    <script>
+
+
+
+var output = document.getElementById('output');
+var secret = "javascript"
+
+
+var crackCode = prompt("What is the secret word?");
+while(crackCode != secret){
+  crackCode= prompt("guess again?");
+};
+output.innerHTML += "Final output";
+
+    </script>
+
+  </body>
+</html>

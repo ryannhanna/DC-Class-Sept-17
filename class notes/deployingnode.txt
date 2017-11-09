@@ -1,0 +1,8 @@
+Requirements for Deploying an app with node:
+
+Requirments
+
+Git remote setup
+package.json
+Procfile
+Setup the port correctly
