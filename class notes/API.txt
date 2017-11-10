@@ -1,0 +1,9 @@
+API-
+
+Express JSON Response
+
+app.get('/', function (request, response) {
+  response.json(
+    {message: 'This is an API Chump!'}
+  );
+});
