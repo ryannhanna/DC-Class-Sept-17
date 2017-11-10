@@ -7,3 +7,21 @@ app.get('/', function (request, response) {
     {message: 'This is an API Chump!'}
   );
 });
+
+cache response:
+
+var apicache = require('apicache');
+var cache = apicache.middleware;
+app.get('/', cache('5 minutes'), function (req, res) {
+  console.log('Generating a new response');
+  res.json(
+    {message: 'This is an API Chump!'}
+  );
+});
+
+Very good to cache your memory:
+
+Use a data storage service:
+
+https://redis.io/
+https://memcached.org/
