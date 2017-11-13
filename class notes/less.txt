@@ -1,0 +1,91 @@
+Variables
+
+Less:
+
+@nice-blue: #5B83AD;
+@light-blue: @nice-blue + #111;
+#header {
+  color: @light-blue;
+}
+Outputs:
+
+#header {
+  color: #6c94be;
+}
+
+
+Compile your Less -> CSS
+
+lessc main.less main.css
+
+or
+
+watch-run -p '**/*.less' lessc main.less main.css
+
+
+Mixins
+
+.bordered {
+  border-top: dotted 1px black;
+  border-bottom: solid 2px black;
+}
+#menu a {
+  color: #111;
+  .bordered;
+}
+.post a {
+  color: red;
+  .bordered;
+}
+
+
+Nested CSS
+
+#header {
+  color: black;
+  .navigation {
+    font-size: 12px;
+    &:hover {
+      color: red;
+    }
+  }
+  .logo {
+    width: 300px;
+    @media (max-width: 768px) {
+      width: 250px;
+    }
+  }
+}
+
+
+#header {
+  color: lighten(@light-blue, 20%);
+}
+
+
+
+Example Layout
+
+less/
+  main.less
+  common/
+    colors.less
+    fonts.less
+    flex-layout.less
+    mixins.less
+  sections/
+    homepage.less
+    blog.less
+    calendar.less
+
+
+
+    Example main.less
+
+@import "common/colors.less";
+@import "common/fonts.less";
+@import "common/flex-layout.less";
+@import "common/mixins.less";
+@import "sections/homepage.less";
+@import "sections/blog.less";
+@import "sections/calendar.less";
