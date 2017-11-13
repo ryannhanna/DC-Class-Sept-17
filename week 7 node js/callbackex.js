@@ -20,9 +20,9 @@ var result = person + hola
 }
 
 
-function product(numbers,reduce) {
-  {
-callback(result)
-    return a * b;
+function product(numbers,callback) {
+var x = numbers.reduce(function(a,b){
+  return a * b;
   }, 1);
+  callback(x);
 }

@@ -7,9 +7,11 @@ var router = express.Router();
 // });
 
 
-router.get('/', function(req,res){
-res.send(400);
-
+router.get('/users',function (req,res){
+res.send({
+users: ["Will", "Laura"]
+});
 
 });
+
 module.exports = router;

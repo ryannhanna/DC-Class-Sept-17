@@ -8,3 +8,4 @@ function counter () {
 }
 
 var count1 = counter ();
+    
