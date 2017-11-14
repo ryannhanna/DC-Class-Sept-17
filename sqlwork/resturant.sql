@@ -298,6 +298,17 @@ ORDER BY stars DESC LIMIT 2;
 
 SELECT COUNT(*) FROM restaurant;
 
+SELECT AVG(stars) FROM restaurant;
+
+
+
+--
+
+
+
+SELECT category, max(stars) FROM restaurant
+
+GROUP BY category;
 
 
 
