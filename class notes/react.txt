@@ -1,0 +1,20 @@
+The Problems with jQuery
+
+Cons:
+
+no architecture
+a high amount of DOM interaction
+many of jQuery's advantages are now built in
+Pros:
+
+extremely easy
+a vast amount of plugins.
+
+
+React
+
+Component Architecture
+JSX- javascript extended
+Virtual DOM
+Works with a lot of vanilla JS - important
+React Native
