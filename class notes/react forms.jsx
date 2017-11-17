@@ -25,3 +25,24 @@ update_name (event) {
 \\ render changes
 <input type="text" value={this.state.name}
   onChange={event => this.update_name(event)}/>
+
+
+  Add A Select
+
+this.state = {name: '', color: 'blue'};
+// render
+<select value={this.state.color}
+  onChange={event => this.update_color(event)}>
+  <option value="red">Red</option>
+  <option value="blue">Blue</option>
+</select>
+
+
+Form Refactor
+
+update_state (event, key) {
+  this.setState({[key]: event.target.value});
+}
+// render changes
+onChange={event => this.update_state(event, 'name')}
+onChange={event => this.update_state(event, 'color')}
