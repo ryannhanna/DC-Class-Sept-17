@@ -1,0 +1,33 @@
+Types of Browser Storage
+
+https://www.html5rocks.com/en/tutorials/offline/storage/
+
+Web Storage: localStorage, sessionStorage
+WebSQL
+IndexedDB
+Cookies
+Cache Storage (service worker required)
+
+
+
+Usage
+
+// set item
+localStorage.colorSetting = '#a4509b';
+localStorage['colorSetting'] = '#a4509b';
+localStorage.setItem('colorSetting', '#a4509b');
+// get item
+localStorage.colorSetting
+localStorage['colorSetting']
+localStorage.getItem('colorSetting');
+// remove one and remove all
+localStorage.removeItem('colorSetting');
+localStorage.clear();
+
+
+Storing Complex Data
+
+localStorage.color = JSON.stringify([255, 0, 0]);
+localStorage.color = JSON.stringify({r: 255, g: 0, b: 0});
+// get and parse
+JSON.parse(localStorage.color)

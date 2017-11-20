@@ -67,8 +67,6 @@ import TextField from 'material-ui/TextField';
   onChange={event => this.update_state(event, 'name')}/>
 
 
-
-
   import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 update_select = (event, index, value) => {
