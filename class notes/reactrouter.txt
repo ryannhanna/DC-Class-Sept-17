@@ -54,3 +54,32 @@ const NoMatch = ({ location }) => (
   <Route path="/form" component={MyForm}/>
   <Route component={NoMatch}/>
 </Switch>
+
+Redirects
+
+import {BrowserRouter, Route, Link, Switch, Redirect}
+  from 'react-router-dom';
+// render
+<Redirect from="/old-form" to="/form"/>
+
+URL Parameters
+
+const Article = ({ match }) => (
+  <div>
+    <h3>Article Slug: {match.params.slug}</h3>
+  </div>
+)
+// render
+<Route path="/article/:id" component={Article}/>
+
+
+Controlling the Route Manually
+
+constructor(props) {
+  super(props);
+  this.state = {name: '', color: 'blue'};
+  this.history = props.history;
+  // props.location, props.location also
+}
+// later
+this.history.push('/');
