@@ -1,0 +1,114 @@
+What We Want
+
+Local storage for immediate access
+Sync data to server in the background
+Backup
+Access data from other machines
+
+
+
+Problems to Overcome
+
+What happens to the sync when you go offline?
+How do resolve conflicts
+two changes at the same time
+Updating clients that have old data
+
+
+Build vs Buy
+
+Build all ourself
+Use a library: Racer
+Use a service: Firebase, Twilio Sync, Google Drive Realtime API
+Winner Firebase: Free to start, handles local storage too
+
+
+
+Firebase Service: fsociety.js
+
+import * as firebase from "firebase";
+var config = {
+  apiKey: "AIzaSyBZWH2Hp6C7LYPGuJ4IKV863Zr6hK8wDKc",
+  authDomain: "dcpretest.firebaseapp.com",
+  databaseURL: "https://dcpretest.firebaseio.com",
+  storageBucket: "dcpretest.appspot.com",
+};
+firebase.initializeApp(config);
+var database = firebase.database();
+export default database;
+
+
+Authenication: fsociety.js
+
+export var User = {};
+export function auth () {
+  return new Promise(function (resolve, reject) {
+    var provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(provider)
+      .then(function (result) {
+        User.user = result.user;
+        resolve(User);
+      })
+      .catch(function (e) {
+        reject(e);
+      });
+  });
+}
+
+
+Database Rules
+
+https://firebase.google.com/docs/database/security/quickstart
+
+{
+  "rules": {
+    "contacts": {
+      "$uid": {
+        ".read": "$uid === auth.uid",
+        ".write": "$uid === auth.uid"
+      }
+    }
+  }
+}
+
+Login button: App.jsx
+
+login () {
+  auth()
+    .then(function (user) {
+      console.log(user);
+    })
+    .catch(function (e) {
+      console.log(e);
+    });
+}
+
+
+
+Reading Data
+
+setTimeout(function () {
+  database.ref('contacts/' + User.user.uid)
+    .once('value').then(function(contacts) {
+      console.log(contacts.val());
+    });
+}, 2000);
+
+
+Catch On Change from Anywhere
+
+database.ref('contacts/' + User.user.uid)
+  .on('value', function(contacts) {
+    console.log(contacts.val());
+  });
+
+
+  Better Login Experience
+
+  firebase.auth()
+    .onAuthStateChanged(function(user) {
+      if (user) {
+        User.user = user;
+        console.log(user);
+      }
+    });
